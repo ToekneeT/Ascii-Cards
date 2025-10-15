@@ -1,18 +1,39 @@
 # Rethink size, needs to be something that makes sense
 # consistently able to math it
 # for example width of card edge to edge.
-def display_cards(cards: list[[str, str]]):
-	top: str = f"┌{"-"*(5)}┐"
-	bottom: str = f"└{"-"*(5)}┘"
-	side: str = f"│{" "*(2)}│"
+# Possibly making it so that the size is vertical lines.
+# Minimum being 5, which makes it a 7x5, smallest that looks normal.
 
-	suit_line_left: str = f"|{" "*(2)}"
-	suit_line_right: str = f"{" "*(2)}|"
+# Given as Rank, Suit
+def display_cards(cards: list[[str, str]], size = 5):
+
+	width = size
+	length = width + 2
+	top: str = f"┌{"-"*(length-2)}┐"
+	bottom: str = f"└{"-"*(length-2)}┘"
+	side: str = f"│{" "*(length-2)}│"
+
+	# Needs an even amount of characters on the left and the right.
+	# Always has an extra character on the left and right due to the side of the card.
+
+	# Loop that increments by 2, starting at 7, each increment adds 1 to the amount of spaces that gets added on each side?
+
+	suit_line_spacing = 2
+	for _ in range(7, length, 2):
+		suit_line_spacing += 1
+
+	extra_vertical = 0
+	for _ in range(5, width, 2):
+		extra_vertical += 1
+
+	suit_line_left: str = f"|{" "*(suit_line_spacing)}"
+	suit_line_right: str = f"{" "*(suit_line_spacing)}|"
+
 	left_rank_left: str = f"|"
-	left_rank_right: str = f"{" "*(3)}|"
-	right_rank_left: str = f"|{" "*(4)}"
+	left_rank_right: str = f"{" "*(width-2)}|"
+	right_rank_left: str = f"|{" "*(width-1)}"
 	right_rank_right: str = f"|"
-	hidden_side: str = f"|{"░"*(5)}|"
+	hidden_side: str = f"|{"░"*(length-2)}|"
 
 	result_str: str = ""
 
@@ -34,6 +55,17 @@ def display_cards(cards: list[[str, str]]):
 
 	result_str += "\n"
 
+	if width > 5:
+		for _ in range(extra_vertical):
+			for idx in range(len(cards)):
+				if cards[idx][0] == "hidden":
+					result_str += hidden_side
+				else:
+					result_str += side
+				result_str += " "
+			
+			result_str += "\n"
+
 	# Suit of the card in the middle.
 	for idx in range(len(cards)):
 		if cards[idx][0] == "hidden":
@@ -43,6 +75,17 @@ def display_cards(cards: list[[str, str]]):
 		result_str += " "
 
 	result_str += "\n"
+
+	if width > 5:
+		for _ in range(extra_vertical):
+			for idx in range(len(cards)):
+				if cards[idx][0] == "hidden":
+					result_str += hidden_side
+				else:
+					result_str += side
+				result_str += " "
+			
+			result_str += "\n"
 
 	# Rank of the card on the bottom right side.
 	for idx in range(len(cards)):
@@ -78,6 +121,9 @@ def main():
 	print(display_cards(deck))
 	print("Single blank: ")
 	print(display_blank_card())
+	print(display_cards(deck, 7))
+	print(display_cards(deck, 9))
+	print(display_cards(deck, 11))
 
 
 if __name__ == "__main__":
