@@ -5,10 +5,11 @@
 # Minimum being 5, which makes it a 7x5, smallest that looks normal.
 
 # Given as Rank, Suit
-def display_cards(cards: list[[str, str]], size = 5):
-
-	width = size
-	length = width + 2
+def display_cards(cards: list[[str, str]], height = 5):
+	# Length should typically be two higher than the height in order to keep a 
+	# proportionate looking playing card.
+	# Given that the suit needs to be in the middle of the card, making the height an even number severely breaks the ascii.
+	length = height + 2
 	top: str = f"┌{"-"*(length-2)}┐"
 	bottom: str = f"└{"-"*(length-2)}┘"
 	side: str = f"│{" "*(length-2)}│"
@@ -23,15 +24,15 @@ def display_cards(cards: list[[str, str]], size = 5):
 		suit_line_spacing += 1
 
 	extra_vertical = 0
-	for _ in range(5, width, 2):
+	for _ in range(5, height, 2):
 		extra_vertical += 1
 
 	suit_line_left: str = f"|{" "*(suit_line_spacing)}"
 	suit_line_right: str = f"{" "*(suit_line_spacing)}|"
 
 	left_rank_left: str = f"|"
-	left_rank_right: str = f"{" "*(width-2)}|"
-	right_rank_left: str = f"|{" "*(width-1)}"
+	left_rank_right: str = f"{" "*(length-4)}|"
+	right_rank_left: str = f"|{" "*(length-3)}"
 	right_rank_right: str = f"|"
 	hidden_side: str = f"|{"░"*(length-2)}|"
 
@@ -55,7 +56,7 @@ def display_cards(cards: list[[str, str]], size = 5):
 
 	result_str += "\n"
 
-	if width > 5:
+	if height > 5:
 		for _ in range(extra_vertical):
 			for idx in range(len(cards)):
 				if cards[idx][0] == "hidden":
@@ -76,7 +77,7 @@ def display_cards(cards: list[[str, str]], size = 5):
 
 	result_str += "\n"
 
-	if width > 5:
+	if height > 5:
 		for _ in range(extra_vertical):
 			for idx in range(len(cards)):
 				if cards[idx][0] == "hidden":
