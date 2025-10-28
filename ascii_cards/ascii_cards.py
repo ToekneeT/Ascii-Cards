@@ -6,6 +6,11 @@
 
 # Given as Rank, Suit
 def display_cards(cards: list[[str, str]], height = 5):
+	if height < 5:
+		raise ValueError("Minimum height is 5.")
+	elif height % 2 == 0:
+		raise ValueError("Height must be an odd number.")
+
 	# Length should typically be two higher than the height in order to keep a 
 	# proportionate looking playing card.
 	# Given that the suit needs to be in the middle of the card, making the height an even number severely breaks the ascii.
@@ -110,6 +115,11 @@ def display_cards(cards: list[[str, str]], height = 5):
 
 
 def display_blank_card(height = 5):
+	if height < 5:
+		raise ValueError("Minimum height is 5.")
+	elif height % 2 == 0:
+		raise ValueError("Height must be an odd number.")
+
 	length = height + 2
 	top: str = f"┌{"─"*(length-2)}┐"
 	bottom: str = f"└{"─"*(length-2)}┘"
