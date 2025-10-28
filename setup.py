@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
 	name="py_ascii_cards",
-	version="0.1",
+	version="0.1.1",
 	description="Display playing cards in ASCII format.",
 	long_description=open("readme.md", encoding="utf-8").read(),
 	long_description_content_type="text/markdown",
