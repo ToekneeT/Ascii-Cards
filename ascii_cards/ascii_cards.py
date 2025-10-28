@@ -10,8 +10,8 @@ def display_cards(cards: list[[str, str]], height = 5):
 	# proportionate looking playing card.
 	# Given that the suit needs to be in the middle of the card, making the height an even number severely breaks the ascii.
 	length = height + 2
-	top: str = f"┌{"-"*(length-2)}┐"
-	bottom: str = f"└{"-"*(length-2)}┘"
+	top: str = f"┌{"─"*(length-2)}┐"
+	bottom: str = f"└{"─"*(length-2)}┘"
 	side: str = f"│{" "*(length-2)}│"
 
 	# Needs an even amount of characters on the left and the right.
@@ -27,14 +27,14 @@ def display_cards(cards: list[[str, str]], height = 5):
 	for _ in range(5, height, 2):
 		extra_vertical += 1
 
-	suit_line_left: str = f"|{" "*(suit_line_spacing)}"
-	suit_line_right: str = f"{" "*(suit_line_spacing)}|"
+	suit_line_left: str = f"│{" "*(suit_line_spacing)}"
+	suit_line_right: str = f"{" "*(suit_line_spacing)}│"
 
-	left_rank_left: str = f"|"
-	left_rank_right: str = f"{" "*(length-4)}|"
-	right_rank_left: str = f"|{" "*(length-3)}"
-	right_rank_right: str = f"|"
-	hidden_side: str = f"|{"░"*(length-2)}|"
+	left_rank_left: str = f"│"
+	left_rank_right: str = f"{" "*(length-4)}│"
+	right_rank_left: str = f"│{" "*(length-3)}"
+	right_rank_right: str = f"│"
+	hidden_side: str = f"│{"░"*(length-2)}│"
 
 	result_str: str = ""
 
@@ -49,7 +49,7 @@ def display_cards(cards: list[[str, str]], height = 5):
 		if cards[idx][0] == "hidden":
 			result_str += hidden_side
 		elif cards[idx][0] == "10":  # Ten is the only rank with two digits
-			result_str += f"|{cards[idx][0]}{left_rank_right}"
+			result_str += f"│{cards[idx][0]}{left_rank_right}"
 		else:
 			result_str += f"{left_rank_left}{cards[idx][0]} {left_rank_right}"
 		result_str += " "
@@ -111,8 +111,8 @@ def display_cards(cards: list[[str, str]], height = 5):
 
 def display_blank_card(height = 5):
 	length = height + 2
-	top: str = f"┌{"-"*(length-2)}┐"
-	bottom: str = f"└{"-"*(length-2)}┘"
+	top: str = f"┌{"─"*(length-2)}┐"
+	bottom: str = f"└{"─"*(length-2)}┘"
 	side: str = f"│{" "*(length-2)}│"
 
 	# Needs an even amount of characters on the left and the right.
@@ -128,7 +128,7 @@ def display_blank_card(height = 5):
 	for _ in range(5, height, 2):
 		extra_vertical += 1
 
-	hidden_side: str = f"|{"░"*(length-2)}|"
+	hidden_side: str = f"│{"░"*(length-2)}│"
 
 	result_str: str = ""
 
