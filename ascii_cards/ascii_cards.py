@@ -109,11 +109,55 @@ def display_cards(cards: list[[str, str]], height = 5):
 	return result_str
 
 
-def display_blank_card():
-	top: str = "┌─────┐"
-	bottom: str = "└─────┘"
-	side: str = "│░░░░░│"
-	return f"{top}\n{side}\n{side}\n{side}\n{bottom}"
+def display_blank_card(height = 5):
+	length = height + 2
+	top: str = f"┌{"-"*(length-2)}┐"
+	bottom: str = f"└{"-"*(length-2)}┘"
+	side: str = f"│{" "*(length-2)}│"
+
+	# Needs an even amount of characters on the left and the right.
+	# Always has an extra character on the left and right due to the side of the card.
+
+	# Loop that increments by 2, starting at 7, each increment adds 1 to the amount of spaces that gets added on each side?
+
+	suit_line_spacing = 2
+	for _ in range(7, length, 2):
+		suit_line_spacing += 1
+
+	extra_vertical = 0
+	for _ in range(5, height, 2):
+		extra_vertical += 1
+
+	hidden_side: str = f"|{"░"*(length-2)}|"
+
+	result_str: str = ""
+
+	# Top of the card.
+	result_str += f"{top} "
+	result_str += "\n"
+	result_str += hidden_side
+	result_str += "\n"
+
+	# If the height is larger than 5, needs to add more of lines.
+	if height > 5:
+		for _ in range(extra_vertical):
+			result_str += hidden_side
+			result_str += "\n"
+
+	result_str += hidden_side
+	result_str += "\n"
+
+	if height > 5:
+		for _ in range(extra_vertical):
+			result_str += hidden_side
+			result_str += "\n"
+
+	result_str += hidden_side
+	result_str += "\n"
+	result_str += f"{bottom} "
+	result_str += "\n"
+
+	return result_str
 
 
 def main():
@@ -122,6 +166,9 @@ def main():
 	print(display_cards(deck))
 	print("Single blank: ")
 	print(display_blank_card())
+	print(display_blank_card(7))
+	print(display_blank_card(9))
+	print(display_blank_card(11))
 	print(display_cards(deck, 7))
 	print(display_cards(deck, 9))
 	print(display_cards(deck, 11))
