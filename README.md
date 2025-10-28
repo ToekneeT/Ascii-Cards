@@ -82,3 +82,9 @@ print(ascii_cards.display_cards([["2", "♠"], ["hidden", "hidden"], ["8", '♥'
 └───────┘ └───────┘ └───────┘
 
 ```
+
+## Example usage
+
+<img width="253" height="577" alt="blackjack_example" src="https://github.com/user-attachments/assets/ae65a081-247a-46a1-a6c5-805400c3f7ca" />
+
+Image from [Intergalactic Lounge Discord Server](discord.gg/mtcwF4NVyb)
