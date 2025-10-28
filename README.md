@@ -19,6 +19,8 @@ Python 3.x.
 
 To display cards.
 ```
+import ascii_cards
+
 display_cards([["A", "♣"]])
 
 ┌─────┐
