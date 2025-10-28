@@ -173,6 +173,10 @@ def main():
 	print(display_cards(deck, 9))
 	print(display_cards(deck, 11))
 
+	print(display_cards([["A", "♤"]]))
+	print(display_cards([["A", "♠"], ["10", "♥"]]))
+	print(display_cards([["2", "♠"], ["hidden", "hidden"], ["8", '♥']]))
+
 
 if __name__ == "__main__":
 	main()
